@@ -7,7 +7,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+# alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
@@ -127,6 +127,6 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 done
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 7'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+# alias stfu="osascript -e 'set volume output muted true'"
+# alias pumpitup="osascript -e 'set volume 7'"
+# alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
