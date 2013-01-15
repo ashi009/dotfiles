@@ -8,24 +8,20 @@
 # 	export TERM=xterm-256color
 # fi
 
-export BOLD="\033[1m"
-export RESET="\033[m"
-export BLACK="\033[30m"
-export RED="\033[31m"
-export GREEN="\033[32m"
-export YELLOW="\033[33m"
-export BLUE="\033[34m"
-export MAGENTA="\033[35m"
-export CYAN="\033[36m"
-export WHITE="\033[37m"
-
-function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+function parse_version_control() {
+	local modified
+	local dummy
+	local branch
+	if [ -e .git ]; then
+		read dummy branch < <(git branch --no-color 2> /dev/null)
+		[ $(git status -s -uno | wc -l) -gt 0 ] && modified=' \E[1;37m*\E[0m'
+		echo -ne " \E[33m$branch$modified"
+	elif [ -e .svn ]; then
+		[ $(svn st -q | wc -l) -gt 0 ] && modified=' \E[1;37m*\E[0m'
+		echo -ne " \E[35msvn$modified"
+	fi
 }
 
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
-
-export PS1="\[${YELLOW}\]\u \[$RESET\]at \[$CYAN\]\h \[$RESET\]in \[$BLUE\]\w\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$RED\]\$(parse_git_branch)\[$RESET\]\n\$ \[$RESET\]"
-export PS2="\[$RESET\]→ \[$RESET\]"
+export PS1="\[\033[37m\]\u@\h \[\033[01;34m\]\w\[\033[0m\]\$(parse_version_control)\[\033[0m\]\n\[\033[0m\]\$\[\033[0m\] "
+export PS2="\[\033[0m\]→\[\033[0m\] "
+export PS4="\${0}:\${LINENO} "
