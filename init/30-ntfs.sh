@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# brew install fuse4x ntfs-3g
+brew install fuse4x ntfs-3g
 
-# sudo cp -rfX $(brew --prefix)/Cellar/fuse4x-kext/*/Library/Extensions/fuse4x.kext /Library/Extensions
-# sudo chmod +s /Library/Extensions/fuse4x.kext/Support/load_fuse4x
+sudo cp -rfX $(brew --prefix)/Cellar/fuse4x-kext/*/Library/Extensions/fuse4x.kext /Library/Extensions
+sudo chmod +s /Library/Extensions/fuse4x.kext/Support/load_fuse4x
 
 cat > mount_ntfs <<EOF
 #!/bin/bash

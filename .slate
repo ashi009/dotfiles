@@ -1,0 +1,33 @@
+config defaultToCurrentScreen true
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows true
+config windowHintsSpread true
+
+# Abstract positions
+alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
+alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
+alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
+alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
+alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
+alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
+alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
+
+alias hyper ctrl;alt;cmd
+
+# Location bindings
+bind left:${hyper} ${lefthalf}
+bind up:${hyper} ${full}
+bind right:${hyper} ${righthalf}
+bind down:${hyper} throw next
+bind g:${hyper} grid padding:5 0:6,3 1:4,1
+bind h:${hyper} hint
+
+# Resize Bindings
+#bind r:${hyper} ${leftmost}
+#bind g:${hyper} ${rightmost}
+
+# Focus Bindings
+# bind right:${hyper}    focus right
+# bind left:${hyper}     focus left
+# bind up:${hyper}       focus up
+# bind down:${hyper}     focus down
