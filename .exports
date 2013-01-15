@@ -13,7 +13,12 @@ export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
 # Highlight section titles in manual pages
-export LESS_TERMCAP_md="$YELLOW"
+export LESS_TERMCAP_md=$'\E[01;37m' # begin bold
+export LESS_TERMCAP_me=$'\E[0m'     # end mode
+export LESS_TERMCAP_so=$'\E[37;40m' # begin standout-mode - info box
+export LESS_TERMCAP_se=$'\E[0m'     # end standout-mode
+export LESS_TERMCAP_us=$'\E[04;37m' # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'     # end underline
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
