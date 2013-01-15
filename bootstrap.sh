@@ -5,6 +5,7 @@ rsync -av \
 	--exclude ".git/" \
 	--exclude ".DS_Store" \
 	--exclude "init/" \
+	--exclude "tools/" \
 	--exclude "*.sh" \
 	--exclude "README.md" \
 	. ~
