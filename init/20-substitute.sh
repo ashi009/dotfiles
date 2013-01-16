@@ -37,9 +37,12 @@ $(brew --prefix)/sbin
 /sbin
 EOF
 
-sudo chown root:wheel paths
-sudo chmod 644 paths
-sudo mv paths /etc/
+path=$(cat paths | tr '\n' ':')
+echo setenv PATH '"'${path%:}'"' > launchd.conf
+
+sudo chown root:wheel paths launchd.conf
+sudo chmod 644 paths launchd.conf
+sudo mv paths launchd.conf /etc/
 
 cat > manpaths <<EOF
 $(brew --prefix coreutils)/libexec/gnuman
