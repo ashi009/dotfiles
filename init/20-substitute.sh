@@ -35,6 +35,7 @@ $(brew --prefix)/bin
 $(brew --prefix)/sbin
 /usr/sbin
 /sbin
+/usr/local/share/npm/bin
 EOF
 
 path=$(cat paths | tr '\n' ':')

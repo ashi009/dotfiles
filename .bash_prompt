@@ -8,18 +8,32 @@
 # If you want it works in light background, change `37' (WHITE) in following
 # script to `30' (BLACK) or other color.
 
+function is_repo() {
+	local path=$(pwd)
+	while [ -n "$path" ]; do
+		[ -d "$path/.git" ] && return 1
+		[ -d "$path/.svn" ] && return 2
+		path=${path%/*}
+	done
+	return 0
+}
+
 function parse_version_control() {
 	local modified
 	local dummy
 	local branch
-	if [ -e .git ]; then
-		read dummy branch < <(git branch --no-color 2> /dev/null)
+	is_repo
+	case $? in
+	1)
+		read dummy branch < <(git branch --no-color 2> /dev/null | grep '*')
 		[ $(git status -s -uno | wc -l) -gt 0 ] && modified=' \E[1;37m*\E[0m'
 		echo -ne " \E[33m$branch$modified"
-	elif [ -e .svn ]; then
+	;;
+	2)
 		[ $(svn st -q | wc -l) -gt 0 ] && modified=' \E[1;37m*\E[0m'
 		echo -ne " \E[35msvn$modified"
-	fi
+	;;
+	esac
 }
 
 export PS1="\[\033[37m\]\u@\h \[\033[01;34m\]\w\[\033[0m\]\$(parse_version_control)\[\033[0m\]\n\[\033[0m\]\$\[\033[0m\] "
