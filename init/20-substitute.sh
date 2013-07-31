@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function substitute() {
 	local binpath=/bin/$1
 	[ -x $binpath ] && [ ! -h $binpath ] && {
-		read dummy version < <($binpath --version | egrep -o 'version \d+\.\d+')
+		read dummy version < <($binpath --version | egrep -o 'version [0-9]+\.[0-9]+')
 		echo "Moving $binpath to $binpath-$version"
 		sudo mv $binpath $binpath-$version
 		newbinpath=$(which $1)
 		echo "Linking $binpath to $newbinpath"
-		sudo ln -s $newbinpath $newbinpath
+		sudo ln -s $newbinpath $binpath
 	}
 }
 
@@ -20,9 +20,7 @@ brew install findutils
 brew install bash
 brew install bash-completion
 
-sudo -v
-
-ln -s $(brew --prefix)/bin/bash $(brew --prefix)/bin/sh
+sudo ln -s $(brew --prefix)/bin/bash $(brew --prefix)/bin/sh
 
 substitute bash
 substitute sh
