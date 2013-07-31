@@ -20,7 +20,7 @@ brew install findutils
 brew install bash
 brew install bash-completion
 
-sudo ln -s $(brew --prefix)/bin/bash $(brew --prefix)/bin/sh
+ln -s $(brew --prefix)/bin/bash $(brew --prefix)/bin/sh
 
 substitute bash
 substitute sh
