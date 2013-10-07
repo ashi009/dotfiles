@@ -2,8 +2,8 @@
 
 brew install fuse4x ntfs-3g
 
-sudo cp -rfX $(brew --prefix)/Cellar/fuse4x-kext/*/Library/Extensions/fuse4x.kext /Library/Extensions
-sudo chmod +s /Library/Extensions/fuse4x.kext/Support/load_fuse4x
+sudo /bin/cp -rfX $(brew --prefix)/Cellar/fuse4x-kext/*/Library/Extensions/fuse4x.kext /Library/Extensions
+sudo /bin/chmod +s /Library/Extensions/fuse4x.kext/Support/load_fuse4x
 
 cat > mount_ntfs <<EOF
 #!/bin/bash
@@ -52,7 +52,7 @@ fi
 exit \$?;
 EOF
 
-sudo chown root:wheel mount_ntfs
-sudo chmod 755 mount_ntfs
-sudo mv /sbin/mount_ntfs /sbin/mount_ntfs-ro
-sudo mv mount_ntfs /sbin/
+sudo /bin/chown root:wheel mount_ntfs
+sudo /bin/chmod 755 mount_ntfs
+sudo /bin/mv /sbin/mount_ntfs /sbin/mount_ntfs-ro
+sudo /bin/mv mount_ntfs /sbin/
