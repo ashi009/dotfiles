@@ -57,7 +57,7 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; sudo npm update -g'
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ip="echo WAN: $(dig +short wanip.lan); echo VPN: $(dig +short wanip.lan); echo Public: $(dig +short myip.opendns.com @resolver1.opendns.com)"
 alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
 
@@ -140,3 +140,6 @@ command -v grunt > /dev/null && alias grunt="grunt --stack"
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+# Count line of code in a git repo, from http://stackoverflow.com/a/4822890/245428
+alias gcloc="git diff --stat 4b825dc642cb6eb9a060e54bf8d69288fbee4904"
