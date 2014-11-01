@@ -736,6 +736,12 @@ if which brew > /dev/null; then
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		brew bundle ./Brewfile;
+		read -p "Do you want to use the latest bash? (y/n) " -n 1;
+		echo "";
+		if [[ $REPLY =~ ^[Yy]$ ]]; then
+			echo $(brew --prefix)/bin/bash | sudo tee -a /etc/shells
+			chsh -s $(brew --prefix)/bin/bash
+		fi;
 	fi;
 	read -p "Do you want to install applications? (y/n) " -n 1;
 	echo "";
