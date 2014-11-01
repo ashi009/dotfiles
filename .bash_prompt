@@ -58,7 +58,8 @@ if tput setaf 1 &> /dev/null; then
 	tput sgr0; # reset colors
 	bold=$(tput bold);
 	reset=$(tput sgr0);
-	# Solarized colors, taken from http://git.io/solarized-colors.
+	underline=$(tput smul);
+	standout=$(tput smso);
 	black=$(tput setaf 0);
 	blue=$(tput setaf 4);
 	cyan=$(tput setaf 6);
@@ -72,6 +73,8 @@ if tput setaf 1 &> /dev/null; then
 else
 	bold='';
 	reset="\e[0m";
+	underline="\e[4;37m";
+	standout="\e[37;40m";
 	black="\e[1;30m";
 	blue="\e[1;34m";
 	cyan="\e[1;36m";
