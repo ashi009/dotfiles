@@ -549,7 +549,7 @@ defaults write com.apple.terminal StringEncodings -array 4
 TERM_PROFILE='Railscasts Dark';
 CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
 if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-	open "${HOME}/init/${TERM_PROFILE}.terminal";
+	open "${TERM_PROFILE}.terminal";
 	sleep 1; # Wait a bit to make sure the theme is loaded
 	defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
 	defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
@@ -561,7 +561,7 @@ fi;
 #defaults write org.x.X11 wm_ffm -bool true
 
 # Install the Railcasts Dark theme for iTerm
-#open "${HOME}/init/Railscasts Dark.itermcolors"
+open "Railscasts Dark.itermcolors"
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
