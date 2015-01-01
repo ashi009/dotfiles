@@ -735,7 +735,7 @@ if which brew > /dev/null; then
 	read -p "Do you want to install homebrew formulae? (y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		brew bundle ./Brewfile;
+		source Brewfile.sh;
 		read -p "Do you want to use the latest bash? (y/n) " -n 1;
 		echo "";
 		if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -746,7 +746,7 @@ if which brew > /dev/null; then
 	read -p "Do you want to install applications? (y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		brew bundle ./Caskfile;
+		source Caskfile.sh;
 	fi;
 fi;
 
